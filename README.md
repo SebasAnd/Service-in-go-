@@ -17,11 +17,11 @@ this parameter will return true if the server has changed since one hour of befo
 - title: this show the title of the page obtain of the <head> of the domain.
 - is_down: this return true if the server is down.
 
-# Run the application.
+# Run the application
 this is a local aplication so its necesary let running the "main.go" element,  this will run on localhost and the port 3000,
 and the appication an be used fom the index element.
 
-# Technologies used.
+# Technologies used
 the was created using Golang to create the endpoint and consume diferents APIS to collect the servers information, VueJs to show 
 the elements inside the page and postgres to stock the servers information.
 
