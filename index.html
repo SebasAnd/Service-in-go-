@@ -1,0 +1,141 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<link rel="stylesheet" type="text/css" href="index.css" media="screen" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<!--<div id="app">
+{{ message }}  <br>
+<input v-model="message"><br>
+<button v-on:click="reverseMessage">Reverse Message</button>
+
+</div>
+<div id="app-7">
+
+<ol>
+    
+      Now we provide each todo-item with the todo object
+      it's representing, so that its content can be dynamic.
+      We also need to provide each component with a "key",
+      which will be explained later.
+
+    <todo-item
+      v-for="item in groceryList"
+      v-bind:todo="item"
+      v-bind:key="item.id"
+    ></todo-item>
+  </ol>
+</div>--->
+
+<div id="app-2">
+	<div class="topnav" >
+		<div class="container">
+      <input  type="text" v-model="message" v-on:keyup.enter="sendMessage" >
+      <button  v-on:click="sendMessage">Search</button>    
+      </div>
+  </div>
+
+
+
+<!--
+	<div v-if="info !== null">
+	<input v-model="message" v-on:keyup.enter="reverseMessage"><br>
+	<button v-on:click="reverseMessage">Reverse Message</button><br>
+<img  v-bind:src="'' + info.data.logo"/>-->
+
+	<div id="Leftdiv" v-if="info">
+		
+		<img  id="image" v-bind:src="'' + info.data.logo"/>
+		
+	</div>
+	<div id="Rightdiv" v-if="info">
+		
+		<h1>{{ info.data.title }}</h1>
+		<h2>Servers</h2>
+		<table >
+		  <tr>
+		    <th>Ip Address</th>
+		    <th>Ssl grade</th>
+		    <th>Country</th>
+		    <th>Owner</th>
+		  </tr>
+		  <tr v-for="item in info.data.servers">
+		    <td>{{item.address}}</td>
+		    <td>{{item.ssl_grade}}</td>
+		    <td>{{item.country}}</td>
+		    <td>{{item.owner}}</td>
+		  </tr>
+		 
+		</table>
+		
+		<h2 >Servers changed: {{info.data.server_changed}} </h2>
+		<h2 >Minimun Ssl grade: {{info.data.ssl_grade}} </h2>
+		<h2 >Previous minimun Ssl grade: {{info.data.previous_ssl_grade}} </h2>
+		<h2 >Is down : {{info.data.is_down}} </h2>
+	</div>
+	
+ <!--{{ info }}-->
+</div>
+</div>
+  
+
+
+
+<script>
+/*	var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue! efren '
+  },
+  methods: {
+    reverseMessage: function () {
+      this.message = this.message.split('').reverse().join('')
+    }
+},
+})
+
+	Vue.component('todo-item', {
+  props: ['todo'],
+  template: '<li>{{ todo.text }}</li>'
+})
+
+var app7 = new Vue({
+  el: '#app-7',
+  data: {
+    groceryList: [
+      { id: 0, text: 'Vegetables' },
+      { id: 1, text: 'Cheese' },
+      { id: 2, text: 'Whatever else humans are supposed to eat' }
+    ]
+  }
+})*/
+
+var app2 = new Vue({
+  el: '#app-2',
+  data () {
+    return {
+      info: null,
+      message: 'truora.com'
+    }
+  },methods: {
+    sendMessage: function () {
+    	
+       axios
+      .get('http://localhost:3000/search/'+this.message,{ useCredentails: true })
+      .then(response => (this.info = response))
+      
+
+
+    }
+},
+  mounted () {
+    /*
+    axios
+      .get('http://localhost:3000/search/'+this.message,{ useCredentails: true })
+      .then(response => (this.info = response))*/
+  }
+})
+
+
+	
+</script>
