@@ -1,4 +1,4 @@
-# Service-in-go-
+# Service in GO
 the project is an API rest that show the server's information of a given domain.the application also show the domains hat recently has 
 searched in the application 
 
